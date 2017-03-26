@@ -3,6 +3,15 @@
   <groupId>HLVBTA</groupId>
   <artifactId>HLVBTA</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <dependencies>
+    <dependency>
+        <groupId>com.sparkjava</groupId>
+        <artifactId>spark-core</artifactId>
+        <version>2.5</version>
+    </dependency>
+</dependencies>
+  
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
