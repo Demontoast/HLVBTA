@@ -120,12 +120,8 @@ fabric.properties
 
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
-
-# *.iml
-# modules.xml
-# .idea/misc.xml
-# *.ipr
-
+.idea/workspace.xml
+.idea/tasks.xml
+.iws
 # Sonarlint plugin
 .idea/sonarlint
-
