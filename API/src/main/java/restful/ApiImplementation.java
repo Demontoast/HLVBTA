@@ -9,10 +9,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Copyright Dr. Ganesh R. Baliga
- * All rights reserved.
- */
+
 public class ApiImplementation extends Api {
 
     Logger logger = LoggerFactory.getLogger(ApiImplementation.class);
@@ -69,20 +66,22 @@ public class ApiImplementation extends Api {
     public List<AD> getAD(float latitude, float longitude, float speed){
         try (Connection conn = sql2o.open()) {
             List<AD> adINFO = conn.createQuery("SELECT " +
-                    "t2.*,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance,t3.moneyOwned,t3.totalAdViews " +
+                    "t2.*,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance " +
                     "FROM Location t1 " +
                     "inner join AD t2 " +
                     "on t1.adID = t2.adID " +
-                    "inner join Developer t3 " +
-                    "on t2.devID = t3.devID " +
                     "where  (6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) )) " +
                     "between minDistance and maxDistance " +
-                    "and :speed between minSpeed and maxSpeed"
+                    "and :speed between minSpeed and maxSpeed "+
+                    "ORDER BY (6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) )) DESC LIMIT 1"
             )
                     .addParameter("LATNum", latitude)
                     .addParameter("LONGNum", longitude)
                     .addParameter("speed", speed)
                     .executeAndFetch(AD.class);
+
+
+
             return adINFO;
         }
         catch (Exception e) {
@@ -91,31 +90,7 @@ public class ApiImplementation extends Api {
 
         return null;
     }
-
- //   @Override
-  //  public List<Location> getLocation(float latitude, float longitude, float minDist, float maxDist) {
-  //      try (Connection conn = sql2o.open()) {
-   //         List<Location> locations;
-    //        locations = conn.createQuery("select Location.latitude, " + "Location.longitude," +
-      //                      "Location.minDistance, " +
-        //                    "Location.maxDistance, " +
-          //                  "(6371 * acos( cos( radians(lat) ) * cos( radians( Location.latitude ) ) * cos( radians(long) - radians(Location.longitude) ) + sin( radians(lat) ) * sin( radians(Location.latitude) ) )) AS distance "+
-            //                "where distance between minDist and maxDist"
-              //      )
-                //    .addParameter("lat", latitude)
-                 //   .addParameter("long", longitude)
-                  //  .addParameter("minDist", latitude)
-//                    .addParameter("maxDist", longitude)
-  //                  .executeAndFetch(Location.class);
-    //        return locations;
-      //  }
-//        catch (Exception e) {
-  //          logger.error(e.getMessage());
-    //    }
-//
-  //      return null;
-    //}
-
+    
     @Override //createQuery -> NOT WORKING
     public List<Location> getLocation(float latitude, float longitude) {
         try (Connection conn = sql2o.open()) {
