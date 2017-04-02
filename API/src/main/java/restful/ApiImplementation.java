@@ -68,7 +68,7 @@ public class ApiImplementation extends Api {
     @Override
     public List<AD> getAD(float latitude, float longitude, float speed){
         try (Connection conn = sql2o.open()) {
-            if (checkDirection(latitude, longitude, speed)) {
+            if (checkDirection(latitude, longitude)) {
                 List<AD> adINFO = conn.createQuery("SELECT " +
                         "t2.*,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance,t3.moneyOwned,t3.totalAdViews " +
                         "FROM Location t1 " +
@@ -106,8 +106,32 @@ public class ApiImplementation extends Api {
      * Note: Current does not work, and simply returns true.
      *  - Michael Marchina
      ********************/
-    public boolean checkDirection(float latitude, float longitude, float speed) {
-        return true;
+    public boolean checkDirection(float latitude, float longitude) {
+        private String file = "location.txt";
+
+        BufferedWriter writer = null;
+
+        if !(File.exists(file)) { // File does not exist, create it and store location values.
+            try {
+                writer = new BufferedWriter(file);
+                writer.write(latitude); // Store latitude on line 0.
+                writer.newLine();
+                writer.write(longitude); // Store longitude on line 1.
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                writer.close();
+            }
+            System.out.println("Loading..."); // Show that we are "loading" as in we are waiting for a comparison.
+            return false;
+        } else {
+            
+            /* File does exist, so we will compare current location to the ad with previous, if
+             the distance is larger, we will return false, if it is smaller, we will return true.
+             */
+
+        }
+        }
     }
 
  //   @Override
