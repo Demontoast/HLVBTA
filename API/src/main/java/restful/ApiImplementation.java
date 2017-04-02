@@ -68,28 +68,46 @@ public class ApiImplementation extends Api {
     @Override
     public List<AD> getAD(float latitude, float longitude, float speed){
         try (Connection conn = sql2o.open()) {
-            List<AD> adINFO = conn.createQuery("SELECT " +
-                    "t2.*,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance,t3.moneyOwned,t3.totalAdViews " +
-                    "FROM Location t1 " +
-                    "inner join AD t2 " +
-                    "on t1.adID = t2.adID " +
-                    "inner join Developer t3 " +
-                    "on t2.devID = t3.devID " +
-                    "where  (6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) )) " +
-                    "between minDistance and maxDistance " +
-                    "and :speed between minSpeed and maxSpeed"
-            )
-                    .addParameter("LATNum", latitude)
-                    .addParameter("LONGNum", longitude)
-                    .addParameter("speed", speed)
-                    .executeAndFetch(AD.class);
-            return adINFO;
+            if (checkDirection(latitude, longitude, speed)) {
+                List<AD> adINFO = conn.createQuery("SELECT " +
+                        "t2.*,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance,t3.moneyOwned,t3.totalAdViews " +
+                        "FROM Location t1 " +
+                        "inner join AD t2 " +
+                        "on t1.adID = t2.adID " +
+                        "inner join Developer t3 " +
+                        "on t2.devID = t3.devID " +
+                        "where  (6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) )) " +
+                        "between minDistance and maxDistance " +
+                        "and :speed between minSpeed and maxSpeed"
+                )
+                        .addParameter("LATNum", latitude)
+                        .addParameter("LONGNum", longitude)
+                        .addParameter("speed", speed)
+                        .executeAndFetch(AD.class);
+                return adINFO;
+            }
         }
         catch (Exception e) {
             logger.error(e.getMessage());
         }
 
         return null;
+    }
+
+    /********************
+     * Check the direction of where we're going via a simple boolean
+     * We will get the user's current lat/long, save it as a previous locally
+     * This will return false and print "Loading..."
+     *
+     * On the next update, we will pull from the local file and compare the new lat/long.
+     * If it is moving towards the lat/long of the ads, it will return true.
+     * If not, it will return false.
+     *
+     * Note: Current does not work, and simply returns true.
+     *  - Michael Marchina
+     ********************/
+    public boolean checkDirection(float latitude, float longitude, float speed) {
+        return true;
     }
 
  //   @Override
