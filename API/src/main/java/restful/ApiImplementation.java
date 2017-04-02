@@ -5,6 +5,8 @@ import org.sql2o.Sql2o;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -109,23 +111,26 @@ public class ApiImplementation extends Api {
     public boolean checkDirection(float latitude, float longitude) {
         private String file = "location.txt";
 
+        FileWriter fr = null;
         BufferedWriter writer = null;
 
         if !(File.exists(file)) { // File does not exist, create it and store location values.
             try {
-                writer = new BufferedWriter(file);
+                fr = new FileWriter(file)
+                writer = new BufferedWriter(fr);
                 writer.write(latitude); // Store latitude on line 0.
                 writer.newLine();
                 writer.write(longitude); // Store longitude on line 1.
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
+                fr.close();
                 writer.close();
             }
             System.out.println("Loading..."); // Show that we are "loading" as in we are waiting for a comparison.
             return false;
         } else {
-            
+
             /* File does exist, so we will compare current location to the ad with previous, if
              the distance is larger, we will return false, if it is smaller, we will return true.
              */
