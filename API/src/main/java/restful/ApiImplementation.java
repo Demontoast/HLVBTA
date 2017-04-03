@@ -110,6 +110,7 @@ public class ApiImplementation extends Api {
      *  - Michael Marchina
      ********************/
     public boolean checkDirection(float latitude, float longitude) {
+        return true; // DEBUG: Returns true because I know this doesn't work yet, if we merge I don't want it to break the program.
         File file = new File("location.txt");
 
         FileWriter fw = null;
