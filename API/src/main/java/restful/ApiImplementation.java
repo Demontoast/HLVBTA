@@ -106,12 +106,12 @@ public class ApiImplementation extends Api {
      * If not, it will return false.
      *
      * Note: Currently unfinished. Need to implement MySQL code to pull from DB.
-     *
+     * Commented out code for the time being and forced a return true value. Will update when it works.
      *  - Michael Marchina
      ********************/
     public boolean checkDirection(float latitude, float longitude) {
         return true; // DEBUG: Returns true because I know this doesn't work yet, if we merge I don't want it to break the program.
-        File file = new File("location.txt");
+        /*File file = new File("location.txt");
 
         FileWriter fw = null;
         BufferedWriter writer = null;
@@ -133,9 +133,9 @@ public class ApiImplementation extends Api {
             return false;
         } else {
 
-            /* File does exist, so we will compare current location to the ad with previous, if
+             File does exist, so we will compare current location to the ad with previous, if
              the distance is larger, we will return false, if it is smaller, we will return true.
-             */
+
 
             FileReader fr = null;
             BufferedReader reader = null;
@@ -158,11 +158,12 @@ public class ApiImplementation extends Api {
 
             /* Now we will read from the MySQL server to compare the distance from the previous against
                the current. After comparing we will write the current lat/long to the file.
-             */
+
             // TODO: Implement MySQL server read
             return false;
         }
         }
+        */
     }
 
  //   @Override
