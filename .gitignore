@@ -101,8 +101,8 @@ local.properties
 ## Plugin-specific files:
 
 # IntelliJ
-/out/
-
+*/out/*
+*/target/*
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 
@@ -120,7 +120,7 @@ fabric.properties
 
 ### Intellij Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
-.idea/workspace.xml
+
 .idea/tasks.xml
 .iws
 # Sonarlint plugin
