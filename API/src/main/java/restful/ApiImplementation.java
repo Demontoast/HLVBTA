@@ -5,11 +5,10 @@ import org.sql2o.Sql2o;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.BufferedWriter;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.Collections;
 
 
 public class ApiImplementation extends Api {
@@ -66,22 +65,30 @@ public class ApiImplementation extends Api {
     }
     @Override
     public List<AD> getAD(float latitude, float longitude, float speed){
+
+      //  if(lastLat==0&&lastLong==0)
+        //    return Collections.emptyList();
+
         try (Connection conn = sql2o.open()) {
             List<AD> adINFO = conn.createQuery("SELECT " +
-                    "t2.*,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance " +
+                    "t2.title,t2.description,t2.websiteUrl,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance " +
                     "FROM Location t1 " +
                     "inner join AD t2 " +
                     "on t1.adID = t2.adID " +
                     "where  (6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) )) " +
                     "between minDistance and maxDistance " +
                     "and :speed between minSpeed and maxSpeed "+
-                    "ORDER BY (6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) )) DESC LIMIT 1"
+                    "ORDER BY (6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) )) ASC LIMIT 1"
             )
                     .addParameter("LATNum", latitude)
                     .addParameter("LONGNum", longitude)
                     .addParameter("speed", speed)
                     .executeAndFetch(AD.class);
-          
+
+
+
+
+
             return adINFO;
         }
         catch (Exception e) {
@@ -90,101 +97,6 @@ public class ApiImplementation extends Api {
 
         return null;
     }
-
-    /********************
-     * Check the direction of where we're going via a simple boolean
-     * We will get the user's current lat/long, save it as a previous locally
-     * This will return false and print "Loading..."
-     *
-     * On the next update, we will pull from the local file and compare the new lat/long.
-     * If it is moving towards the lat/long of the ads, it will return true.
-     * If not, it will return false.
-     *
-     * Note: Currently unfinished. Need to implement MySQL code to pull from DB.
-     * Commented out code for the time being and forced a return true value. Will update when it works.
-     *  - Michael Marchina
-     ********************/
-    public boolean checkDirection(float latitude, float longitude) {
-        return true; // DEBUG: Returns true because I know this doesn't work yet, if we merge I don't want it to break the program.
-        /*File file = new File("location.txt");
-
-        FileWriter fw = null;
-        BufferedWriter writer = null;
-
-        if !(file.exists()) { // File does not exist, create it and store location values.
-            try {
-                fr = new FileWriter(file)
-                writer = new BufferedWriter(fw);
-                writer.write(latitude); // Store latitude on line 0.
-                writer.newLine();
-                writer.write(longitude); // Store longitude on line 1.
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                fr.close();
-                writer.close();
-            }
-            System.out.println("Loading..."); // Show that we are "loading" as in we are waiting for a comparison.
-            return false;
-        } else {
-
-             File does exist, so we will compare current location to the ad with previous, if
-             the distance is larger, we will return false, if it is smaller, we will return true.
-
-
-            FileReader fr = null;
-            BufferedReader reader = null;
-
-            float prevLat = 0;
-            float prevLong = 0;
-
-            try {
-                fr = new FileReader(file);
-                reader = new BufferedReader(fr);
-                prevLat = Float.valueOf(reader.readLine()); // Reads latitude from line 0 and stores it.
-                prevLong = Float.valueOf(reader.readLine()); // Reads longitude from line 1 and stores it.
-                return true; // DEBUG: Returns true if we successfully read from the file and stored prevLat and prevLong
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                fr.close();
-                reader.close();
-            }
-
-            /* Now we will read from the MySQL server to compare the distance from the previous against
-               the current. After comparing we will write the current lat/long to the file.
-
-            // TODO: Implement MySQL server read
-            return false;
-        }
-        }
-        */
-    }
-
-/*    @Override
-    public List<Location> getLocation(float latitude, float longitude, float minDist, float maxDist) {
-        try (Connection conn = sql2o.open()) {
-            List<Location> locations;
-            locations = conn.createQuery("select Location.latitude, " + "Location.longitude," +
-                            "Location.minDistance, " +
-                            "Location.maxDistance, " +
-                            "(6371 * acos( cos( radians(lat) ) * cos( radians( Location.latitude ) ) * cos( radians(long) - radians(Location.longitude) ) + sin( radians(lat) ) * sin( radians(Location.latitude) ) )) AS distance "+
-                            "where distance between minDist and maxDist"
-                    )
-                    .addParameter("lat", latitude)
-                    .addParameter("long", longitude)
-                    .addParameter("minDist", latitude)
-                    .addParameter("maxDist", longitude)
-                    .executeAndFetch(Location.class);
-            return locations;
-        }
-        catch (Exception e) {
-            logger.error(e.getMessage());
-        }
-
-        return null;
-    }
-*/
 
     @Override //createQuery -> NOT WORKING
     public List<Location> getLocation(float latitude, float longitude) {
@@ -263,4 +175,6 @@ public class ApiImplementation extends Api {
             return false;
         }
     }
+
+
 }

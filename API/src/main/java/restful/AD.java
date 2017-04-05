@@ -22,6 +22,8 @@ public class AD {
     float moneyOwned;
     int totalAdViews;
 
+    String websiteUrl;
+
     public AD(){
 
     }
@@ -45,6 +47,9 @@ public class AD {
     public int getMinSpeed() {
         return minSpeed;
     }
+    public String getWebsiteURL() {
+        return websiteUrl;
+    }
 
     public void setAdID(int x) {
         this.adID = x;
@@ -66,6 +71,9 @@ public class AD {
     }
     public void setMinSpeed(int x) {
         this.minSpeed = x;
+    }
+    public void setWebsiteURL(String x) {
+        this.websiteUrl = x;
     }
 
     public float getLat() {
