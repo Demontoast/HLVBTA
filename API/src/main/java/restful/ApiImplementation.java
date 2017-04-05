@@ -68,7 +68,7 @@ public class ApiImplementation extends Api {
     public List<AD> getAD(float latitude, float longitude, float speed){
         try (Connection conn = sql2o.open()) {
             List<AD> adINFO = conn.createQuery("SELECT " +
-                    "t2.*,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance " +
+                    "t2.title, t2.description, t2.websiteUrl,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance " +
                     "FROM Location t1 " +
                     "inner join AD t2 " +
                     "on t1.adID = t2.adID " +
