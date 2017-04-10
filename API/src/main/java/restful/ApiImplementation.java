@@ -110,6 +110,8 @@ public class ApiImplementation extends Api {
         }*/
         return null;
     }
+
+
     /********************
      * Check the direction of where we're going via a simple boolean
      * We will get the user's current lat/long, save it as a previous locally
