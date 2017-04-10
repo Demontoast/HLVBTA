@@ -94,21 +94,26 @@ public class ApiImplementation extends Api {
     //GetDevID gets the devID fromt he ap which is displaying the current ad. For every ad that the ap displays, the assoiated devID will have its number of ads shown increase by 1.
     //IF a new devId is given create a new entry in the table, this way the devIDs are separate and we can tell which developer is showing more ads.
     // this method may not necessary
-    public List<Developer> getDevID(int devID){
+    public void getDevID(int devID){
         /*try (Connection conn = sql2o.open()){
 
-            //create the queury, selecting the devID and its total ad views and incrementing by 1.
-            List<Developer> devINFO = conn.createQuery("SELECT "
-                                            + "devID"
-                                            + "totalAdVeiws = totalAdViews + 1"
-            )
-                    .addParameter("devID", devID)
-                    .executeAndFetch(Developer.class);
+            List<AD> ad = conn.createQuery("SELECT devID FROM WHERE adID = :adID;" )
+                    .addParameter("adID", devID)
+                    .executeAndFetch(AD.class);
+            int dev = ad.get(0).getDevID();
+
+            //create the query to select the devID and its views and incrementing it by 1.
+            conn.createQuery("UPDATE Developer "
+                        + "SET impressions = impressions + 1"
+                        + " WHERE devID = :dev;"
+                        )
+                    .addParameter("devID", dev)
+                    .executeUpdate();
         }
         catch (Exception e) {
             logger.error(e.getMessage());
         }*/
-        return null;
+
     }
 
 

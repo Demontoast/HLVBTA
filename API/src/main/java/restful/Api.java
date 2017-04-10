@@ -30,7 +30,7 @@ public abstract class Api {
     public abstract List<Location> getLocation(float latitude, float longitude);
     public abstract List<AD> getAD(float latitude, float longitude, float speed);
     public abstract List<City> getCities(String country);
-    public abstract List<Developer> getDevID(int devID);
+    public abstract void getDevID(int devID);
 
 
     /**
