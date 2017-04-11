@@ -28,7 +28,7 @@ public abstract class Api {
      * @return list of cities in the country
      */
     public abstract List<Location> getLocation(float latitude, float longitude);
-    public abstract List<AD> getAD(float latitude, float longitude, float speed);
+    public abstract List<AD> getAD(float latitude, float longitude, float speed, float lastLat, float lastLong);
     public abstract List<City> getCities(String country);
     public abstract void getDevID(int devID);
 
