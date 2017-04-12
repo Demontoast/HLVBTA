@@ -39,16 +39,28 @@ public class Main {
             return "Hello World";
         });
 
-        get("/locations/:latitude/:longitude/:speed", (req, res) -> {
+        get("/locations/:latitude/:longitude/:speed/:lastLat/:lastLong", (req, res) -> {
             float latitude = Float.parseFloat(req.params("latitude"));
             float longitude = Float.parseFloat(req.params("longitude"));
             float speed = Float.parseFloat(req.params("speed"));
+            float lastLat = Float.parseFloat(req.params("lastLat"));
+            float lastLong = Float.parseFloat(req.params("lastLong"));
 
             Api myapi = Api.getApi();
-            List<AD> ads = myapi.getAD(latitude, longitude, speed);
+            List<AD> ads = myapi.getAD(latitude, longitude, speed, lastLat,lastLong);
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
             return gson.toJson(ads);
+        });
+
+        get("/dev/:devID", (req, res) -> {
+            int devID = Integer.parseInt(req.params("devID"));
+
+            Api myapi = Api.getApi();
+            myapi.getDevID(devID);
+
+            return "Worked";
         });
 
 
