@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/718d67d7b9eac8311654a3fc49d63d6e5597baef/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/classes_73a581582300037c217b394cf3e8354f2ef9567e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/a4632bd49f2e9baafbcbe75628bf3b4a112de0da/output/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_5fa76eb53fe3f1e79842bd0ce7c60687f3285ecc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/317f03a71355f84f9356741bf8f8db8e4ac03688/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/classes_6f5b29a1c208a42712a3e2af5d4a17164e728a9a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/39359a71e7d4589da5c8738e2e52870dd8c79ed8/output/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_90846e1b62f11dbc8435c95471a6067085eb83c7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/5ebaeb2a9632fb72e82606a7960c06ce712b6432/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/classes_460beaca6a20b2878c34d8df03b88e86777fb427.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/24.2.1/support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/support-annotations-24.2.1_9385a988c1db779f7866df87cc3cc05f1a336dfc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/f0c65926ecd68e47528eb270b2f2533a6b48cbd3/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/classes_4f1c336cc359ef187140b129b347ae2679a7e7da.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/a4632bd49f2e9baafbcbe75628bf3b4a112de0da/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/classes_6bc9ac5584d9ff6682f6ef241dca8f6325ddc183.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/12aeadc6a97e97a6d153e4185bf8b1b93327d107/output/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_f93c18636838987e1e4e28c292a2566683ec34ed.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/4799d4cc0cdea2d97398f0baa34078b3b934c521/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/classes_de4c4bbadd355e34af388954cfd027b71670da1b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/src/main/res/libs/gson-2.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ecb6e1f8e4b0e84c4b886c2f14a1500caf309757">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/gson-2.3.1_410670a9ed667c31774fd41c272de4eba18ba226.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/12aeadc6a97e97a6d153e4185bf8b1b93327d107/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/classes_56f2523f7d6bb8427f5c90747d4d5a4065c17562.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/e20f1f30d3d87b808cd0f437d9c204a367de2d80/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/classes_0015dfb73a3cd76daf0fa7af7933e9ca38bcba96.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/f0c65926ecd68e47528eb270b2f2533a6b48cbd3/output/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_eabaad71067fa13d5bb33fe5d6476eb9ae40ded8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/4799d4cc0cdea2d97398f0baa34078b3b934c521/output/jars/libs/internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/internal_impl-24.2.1_84bfdd86c6f9eb0ba38997269532718eba3d4c7b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/damenTomassi/.android/build-cache/39359a71e7d4589da5c8738e2e52870dd8c79ed8/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="/Users/damenTomassi/AndroidStudioProjects/AstraeaDemo/app/build/intermediates/pre-dexed/debug/classes_7d86968c14b905dece4350ef9b2bf55bb7eb191b.jar" />
+    </item>
+
+</items>
