@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener locationListener;
     private static String adWebsiteURL ="";
+    private double oldLatitude = 0.0;
+    private double oldLongitude = 0.0;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -75,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         adTitleButton = (Button) findViewById(R.id.adTitleButton);
         adDetailButton = (Button) findViewById(R.id.adDetailButton);
         textView = (TextView) findViewById(R.id.textView);
+
+
       //  adTitleTextView = (TextView) findViewById(R.id.adTitle);
       //  adContentTextView = (TextView) findViewById(R.id.adDetail);
 
@@ -90,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
                 buildAddressForServer += location.getLatitude();
                 buildAddressForServer += "/" + location.getLongitude();
                 buildAddressForServer += "/" + location.getSpeed();
+                buildAddressForServer += "/" + oldLatitude;
+                buildAddressForServer += "/" + oldLongitude;
+                oldLatitude = location.getLatitude();
+                oldLongitude= location.getLongitude();
                 // buildAddressForServer += "/30";
                 System.out.println("Query address: " + buildAddressForServer);
                 getAdFromServer(buildAddressForServer);
@@ -151,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         adTitleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("It worked!");
+              //  System.out.println("It worked!");
                 goToWebsite();
             }
         });
@@ -159,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         adDetailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("It worked here too!");
+              //  System.out.println("It worked here too!");
                 goToWebsite();
             }
         });
