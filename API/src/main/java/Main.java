@@ -45,9 +45,11 @@ public class Main {
             float speed = Float.parseFloat(req.params("speed"));
             float lastLat = Float.parseFloat(req.params("lastLat"));
             float lastLong = Float.parseFloat(req.params("lastLong"));
+            float startTime = Float.parseFloat(req.params("startTime"));
+            float startTime = Float.parseFloat(req.params("endTime"));
 
             Api myapi = Api.getApi();
-            List<AD> ads = myapi.getAD(latitude, longitude, speed, lastLat,lastLong);
+            List<AD> ads = myapi.getAD(latitude, longitude, speed, lastLat,lastLong,startTime,endTime);
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -75,6 +77,8 @@ public class Main {
                 float longitude = obj.get("longitude").getAsFloat();
                 float minDist = obj.get("minDistance").getAsFloat();
                 float maxDist = obj.get("maxDistance").getAsFloat();
+                float startTime = obj.get("startTime").getAsFloat();
+                float endTime = obj.get("endTime").getAsFloat();
 
                 Api myapi = Api.getApi();
 

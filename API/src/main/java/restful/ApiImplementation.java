@@ -66,19 +66,20 @@ public class ApiImplementation extends Api {
         return null;
     }
     @Override
-    public List<AD> getAD(float latitude, float longitude, float speed, float lastLat, float lastLong){
+    public List<AD> getAD(float latitude, float longitude, float speed, float lastLat, float lastLong, float startTime, float endTime){
 
         if(lastLat == 0f && lastLong == 0f)
             return Collections.emptyList();
 
         try (Connection conn = sql2o.open()) {
             List<AD> adINFO = conn.createQuery(
-                    "SELECT t2.adID, t2.title,t2.description,t2.websiteUrl,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance "+
+                    "SELECT t2.adID, t2.title,t2.description,t2.websiteUrl,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance,t2.startTime,t2.endTime "+
                             "FROM Location t1 "+
                             "inner join AD t2 "+
                             "on t1.adID = t2.adID "+
                             "where ((6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) )) "+
                             "between minDistance and maxDistance "+
+                            "and :time between startTime and endTime"+
                             "and :speed between minSpeed and maxSpeed) "+
                             "and ((t2.Direction = 1 and (((6371 * acos( cos( radians(:lastLat) ) * cos( radians( latitude ) ) * cos( radians(:lastLong) - radians(longitude) ) + sin( radians(:lastLat) ) * sin( radians(latitude) ) )))-((6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) ))))> 0) " +
                             "OR (t2.Direction = 0 and (((6371 * acos( cos( radians(:lastLat) ) * cos( radians( latitude ) ) * cos( radians(:lastLong) - radians(longitude) ) + sin( radians(:lastLat) ) * sin( radians(latitude) ) )))-((6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) ))))<0) " +
@@ -90,6 +91,8 @@ public class ApiImplementation extends Api {
                     .addParameter("speed", speed)
                     .addParameter("lastLat", lastLat)
                     .addParameter("lastLong", lastLong)
+                    .addParameter("startTime", startTime)
+                    .addParameter("endTime", endTime)
                     .executeAndFetch(AD.class);
 
             return adINFO;
