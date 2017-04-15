@@ -111,9 +111,14 @@ public class ApiImplementation extends Api {
     public void getDevID(int devID){
         try (Connection conn = sql2o.open()){
 
+            List<AD> ad = conn.createQuery("Select devID From AD WHERE adid = :adID;")
+                    .addParameter("adID", devID)
+                    .executeAndFetch(AD.class);
+
+            int dev = ad.get(0).getDevID();
             //create the query to select the devID and its views and incrementing it by 1.
             conn.createQuery("UPDATE Developer "
-                        + "SET impressions = impressions + 1"
+                        + "SET click = click + 1"
                         + " WHERE devID = :dev;"
                         )
                     .addParameter("dev", devID)
