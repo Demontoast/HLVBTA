@@ -39,17 +39,16 @@ public class Main {
             return "Hello World";
         });
 
-        get("/locations/:latitude/:longitude/:speed/:lastLat/:lastLong", (req, res) -> {
+        get("/locations/:latitude/:longitude/:speed/:lastLat/:lastLong/:time", (req, res) -> {
             float latitude = Float.parseFloat(req.params("latitude"));
             float longitude = Float.parseFloat(req.params("longitude"));
             float speed = Float.parseFloat(req.params("speed"));
             float lastLat = Float.parseFloat(req.params("lastLat"));
             float lastLong = Float.parseFloat(req.params("lastLong"));
-            float startTime = Float.parseFloat(req.params("startTime"));
-            float startTime = Float.parseFloat(req.params("endTime"));
+            float time = Float.parseFloat(req.params("time"));
 
             Api myapi = Api.getApi();
-            List<AD> ads = myapi.getAD(latitude, longitude, speed, lastLat,lastLong,startTime,endTime);
+            List<AD> ads = myapi.getAD(latitude, longitude, speed, lastLat,lastLong,time);
 
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -77,8 +76,8 @@ public class Main {
                 float longitude = obj.get("longitude").getAsFloat();
                 float minDist = obj.get("minDistance").getAsFloat();
                 float maxDist = obj.get("maxDistance").getAsFloat();
-                float startTime = obj.get("startTime").getAsFloat();
-                float endTime = obj.get("endTime").getAsFloat();
+                //float startTime = obj.get("startTime").getAsFloat();
+                //float endTime = obj.get("endTime").getAsFloat();
 
                 Api myapi = Api.getApi();
 

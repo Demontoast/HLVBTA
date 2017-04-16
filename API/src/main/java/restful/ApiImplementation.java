@@ -66,20 +66,20 @@ public class ApiImplementation extends Api {
         return null;
     }
     @Override
-    public List<AD> getAD(float latitude, float longitude, float speed, float lastLat, float lastLong, float startTime, float endTime){
+    public List<AD> getAD(float latitude, float longitude, float speed, float lastLat, float lastLong, float time){
 
         if(lastLat == 0f && lastLong == 0f)
             return Collections.emptyList();
 
         try (Connection conn = sql2o.open()) {
             List<AD> adINFO = conn.createQuery(
-                    "SELECT t2.adID, t2.title,t2.description,t2.websiteUrl,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance,t2.startTime,t2.endTime "+
+                    "SELECT t2.adID, t2.title,t2.description,t2.websiteUrl,t1.latitude,t1.longitude,t1.minDistance,t1.maxDistance "+
                             "FROM Location t1 "+
                             "inner join AD t2 "+
                             "on t1.adID = t2.adID "+
                             "where ((6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) )) "+
                             "between minDistance and maxDistance "+
-                            "and :time between startTime and endTime"+
+                            "and :time between startTime and endTime "+
                             "and :speed between minSpeed and maxSpeed) "+
                             "and ((t2.Direction = 1 and (((6371 * acos( cos( radians(:lastLat) ) * cos( radians( latitude ) ) * cos( radians(:lastLong) - radians(longitude) ) + sin( radians(:lastLat) ) * sin( radians(latitude) ) )))-((6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) ))))> 0) " +
                             "OR (t2.Direction = 0 and (((6371 * acos( cos( radians(:lastLat) ) * cos( radians( latitude ) ) * cos( radians(:lastLong) - radians(longitude) ) + sin( radians(:lastLat) ) * sin( radians(latitude) ) )))-((6371 * acos( cos( radians(:LATNum) ) * cos( radians( latitude ) ) * cos( radians( :LONGNum ) - radians(longitude) ) + sin( radians(:LATNum) ) * sin( radians(latitude) ) ))))<0) " +
@@ -91,8 +91,7 @@ public class ApiImplementation extends Api {
                     .addParameter("speed", speed)
                     .addParameter("lastLat", lastLat)
                     .addParameter("lastLong", lastLong)
-                    .addParameter("startTime", startTime)
-                    .addParameter("endTime", endTime)
+                    .addParameter("time", time)
                     .executeAndFetch(AD.class);
 
             return adINFO;
@@ -105,7 +104,7 @@ public class ApiImplementation extends Api {
     }
 
 
-    //GetDevID gets the devID fromt he ap which is displaying the current ad. For every ad that the ap displays, the assoiated devID will have its number of ads shown increase by 1.
+    //GetDevID gets the devID from the api which is displaying the current ad. For every ad that the ap displays, the assoiated devID will have its number of ads shown increase by 1.
     //IF a new devId is given create a new entry in the table, this way the devIDs are separate and we can tell which developer is showing more ads.
     // this method may not necessary
     public void getDevID(int devID){
