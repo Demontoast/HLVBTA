@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "948412813359",
+    "firebase_url": "https://astraeademov2-3558f.firebaseio.com",
+    "project_id": "astraeademov2-3558f",
+    "storage_bucket": "astraeademov2-3558f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948412813359:android:be000d5956641cc5",
+        "android_client_info": {
+          "package_name": "com.example.damentomassi.astraeademov2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "948412813359-669bgvue1n9b4cnhjgmr4p6v20m4ti36.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.damentomassi.astraeademov2",
+            "certificate_hash": "0a0cc67f16d41bf6ebb6851965a7845258f724cf"
+          }
+        },
+        {
+          "client_id": "948412813359-nvudlo1alqq22up2jnevm0o24qdt8dej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBtnForrW6DSJ1PTwNUz4XgRUo7YyhJEIs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "948412813359-nvudlo1alqq22up2jnevm0o24qdt8dej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
