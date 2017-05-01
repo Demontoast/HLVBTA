@@ -24,6 +24,8 @@ public class AD {
 
     String websiteUrl;
 
+    float time;
+
     public AD(){
 
     }
@@ -50,6 +52,11 @@ public class AD {
     public String getWebsiteUrl() {
         return websiteUrl;
     }
+    public float getTime() {
+        return time;
+    }
+
+
 
     public void setAdID(int x) {
         this.adID = x;
@@ -115,6 +122,10 @@ public class AD {
         this.moneyOwned = x;
     }
     public void setTotalAdViews(int x) { this.totalAdViews = x; }
+
+    public void setTime(float x) {
+        this.time = x;
+    }
 
 
 }
