@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.damentomassi.astraeademov2.MainActivity"
+    xmlns:ads="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Call on the Stars"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Guided by the Stars"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp" />
+
+    <Button
+        android:id="@+id/adTitleButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AD Title Goes Here"
+        android:textSize="24sp"
+        android:layout_above="@+id/adDetailButton"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/adDetailButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:text="The detailed information about the ad goes here, you can even add in a lot of text and it will go to a new line!"
+        android:textSize="14sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id">
+    </com.google.android.gms.ads.AdView>
+
+
+</RelativeLayout>
+
+
