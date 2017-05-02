@@ -29,11 +29,6 @@ public class Main {
         // Location of the static html files
         staticFiles.location("/public");
 
-        // Uncomment below line if webserver is different from
-        // the server hosting the restapi. Refer CORS (cross origin resource sharing)
-
-        //after(new CorsEnabler());
-
         get("/hello", (req, res) -> {
             logger.debug("Get request: /hello");
             return "Hello World";

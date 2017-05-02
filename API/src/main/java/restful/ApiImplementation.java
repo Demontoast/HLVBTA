@@ -47,24 +47,6 @@ public class ApiImplementation extends Api {
 
     }
 
-
-    @Override
-    public List<City> getCities(String country) {
-        try (Connection conn = sql2o.open()) {
-            List<City> cities =
-                    conn.createQuery("select city.name, city.population from city, country where "
-                            + "city.countrycode=country.code and country.name=:countryName "
-                            + "order by city.population desc;")
-                            .addParameter("countryName", country)
-                            .executeAndFetch(City.class);
-            return cities;
-        }
-        catch (Exception e) {
-            logger.error(e.getMessage());
-        }
-
-        return null;
-    }
     @Override
     public List<AD> getAD(float latitude, float longitude, float speed, float lastLat, float lastLong, float time){
 
@@ -104,9 +86,11 @@ public class ApiImplementation extends Api {
     }
 
 
-    //GetDevID gets the devID from the api which is displaying the current ad. For every ad that the ap displays, the assoiated devID will have its number of ads shown increase by 1.
-    //IF a new devId is given create a new entry in the table, this way the devIDs are separate and we can tell which developer is showing more ads.
-    // this method may not necessary
+    /********************
+     * GetDevID gets the devID from the api which is displaying the current ad. For every ad that the ap displays, the assoiated devID will have its number of ads shown increase by 1.
+     * IF a new devId is given create a new entry in the table, this way the devIDs are separate and we can tell which developer is showing more ads.
+     * this method may not necessary
+     ********************/
     public void getDevID(int devID){
         try (Connection conn = sql2o.open()){
 
@@ -130,101 +114,6 @@ public class ApiImplementation extends Api {
     }
 
 
-    /********************
-     * Check the direction of where we're going via a simple boolean
-     * We will get the user's current lat/long, save it as a previous locally
-     * This will return false and print "Loading..."
-     *
-     * On the next update, we will pull from the local file and compare the new lat/long.
-     * If it is moving towards the lat/long of the ads, it will return true.
-     * If not, it will return false.
-     *
-     * Note: Currently unfinished. Need to implement MySQL code to pull from DB.
-     * Commented out code for the time being and forced a return true value. Will update when it works.
-     *  - Michael Marchina
-     ********************/
-    public boolean checkDirection(float latitude, float longitude) {
-        return true; // DEBUG: Returns true because I know this doesn't work yet, if we merge I don't want it to break the program.
-        /*File file = new File("location.txt");
-
-        FileWriter fw = null;
-        BufferedWriter writer = null;
-
-        if !(file.exists()) { // File does not exist, create it and store location values.
-            try {
-                fr = new FileWriter(file)
-                writer = new BufferedWriter(fw);
-                writer.write(latitude); // Store latitude on line 0.
-                writer.newLine();
-                writer.write(longitude); // Store longitude on line 1.
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                fr.close();
-                writer.close();
-            }
-            System.out.println("Loading..."); // Show that we are "loading" as in we are waiting for a comparison.
-            return false;
-        } else {
-
-             File does exist, so we will compare current location to the ad with previous, if
-             the distance is larger, we will return false, if it is smaller, we will return true.
-
-
-            FileReader fr = null;
-            BufferedReader reader = null;
-
-            float prevLat = 0;
-            float prevLong = 0;
-
-            try {
-                fr = new FileReader(file);
-                reader = new BufferedReader(fr);
-                prevLat = Float.valueOf(reader.readLine()); // Reads latitude from line 0 and stores it.
-                prevLong = Float.valueOf(reader.readLine()); // Reads longitude from line 1 and stores it.
-                return true; // DEBUG: Returns true if we successfully read from the file and stored prevLat and prevLong
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                fr.close();
-                reader.close();
-            }
-
-            /* Now we will read from the MySQL server to compare the distance from the previous against
-               the current. After comparing we will write the current lat/long to the file.
-
-            // TODO: Implement MySQL server read
-            return false;
-        }
-        }
-        */
-    }
-
-/*    @Override
-    public List<Location> getLocation(float latitude, float longitude, float minDist, float maxDist) {
-        try (Connection conn = sql2o.open()) {
-            List<Location> locations;
-            locations = conn.createQuery("select Location.latitude, " + "Location.longitude," +
-                            "Location.minDistance, " +
-                            "Location.maxDistance, " +
-                            "(6371 * acos( cos( radians(lat) ) * cos( radians( Location.latitude ) ) * cos( radians(long) - radians(Location.longitude) ) + sin( radians(lat) ) * sin( radians(Location.latitude) ) )) AS distance "+
-                            "where distance between minDist and maxDist"
-                    )
-                    .addParameter("lat", latitude)
-                    .addParameter("long", longitude)
-                    .addParameter("minDist", latitude)
-                    .addParameter("maxDist", longitude)
-                    .executeAndFetch(Location.class);
-            return locations;
-        }
-        catch (Exception e) {
-            logger.error(e.getMessage());
-        }
-
-        return null;
-    }
-*/
-
     @Override //createQuery -> NOT WORKING
     public List<Location> getLocation(float latitude, float longitude) {
         try (Connection conn = sql2o.open()) {
@@ -242,41 +131,6 @@ public class ApiImplementation extends Api {
         }
 
         return null;
-    }
-
-
-    @Override
-    public boolean createCity (
-            String name,
-            String countryName,
-            String district,
-            int population
-    ) {
-        try (Connection conn = sql2o.open()) {
-            List<String> codes =
-                    conn.createQuery("select code from country where name=:countryName")
-                            .addParameter("countryName", countryName)
-                            .executeAndFetch(String.class);
-            if (codes.size() != 1) {
-                return false;
-            }
-            else {
-                String code = codes.get(0);
-                conn.createQuery("insert into city (name, countrycode, district, population) "
-                        + "values (:name, :code, :district, :population);")
-                        .addParameter("name", name)
-                        .addParameter("code", code)
-                        .addParameter("district", district)
-                        .addParameter("population", population)
-                        .executeUpdate();
-                return true;
-
-            }
-        }
-        catch (Exception e) {
-            logger.error(e.getMessage());
-            return false;
-        }
     }
 
     @Override

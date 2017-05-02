@@ -4,13 +4,9 @@ package restful;
 import java.util.List;
 
 /**
- * Copyright Dr. Ganesh R. Baliga
- * All rights reserved.
+ * Created by Jacob_Kershaw on 3/26/17.
  */
 
-/**
-    Abstract class specifying the functionality provided by the restful api
- */
 public abstract class Api {
 
     static Api theApi = null;
@@ -21,33 +17,9 @@ public abstract class Api {
         return theApi;
     }
 
-
-    /**
-     * Returns all cities in the given country
-     * @param country The country
-     * @return list of cities in the country
-     */
     public abstract List<Location> getLocation(float latitude, float longitude);
     public abstract List<AD> getAD(float latitude, float longitude, float speed, float lastLat, float lastLong, float time);
-    public abstract List<City> getCities(String country);
     public abstract void getDevID(int devID);
-
-
-    /**
-     * Add a city to a country
-     * @param name  name of city
-     * @param countryName name of country
-     * @param district  district that the city is located in
-     * @param population population of the city
-     * @return true if the city was added, false otherwise
-     */
-
-    public abstract boolean createCity (
-            String name,
-            String countryName,
-            String district,
-            int population
-    );
 
     public abstract boolean createLocations (
             float latitude,
